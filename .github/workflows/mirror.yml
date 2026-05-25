@@ -11,12 +11,12 @@ jobs:
         run: docker login -u devlikeapro -p ${{ secrets.WAHA_TOKEN }}
 
       - name: Pull WAHA Plus NOWEB
-        run: docker pull devlikeapro/waha-plus:NOWEB-latest
+        run: docker pull devlikeapro/waha-plus:noweb
 
       - name: Login Docker Hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Tag and Push
         run: |
-          docker tag devlikeapro/waha-plus:NOWEB-latest gabootay/waha-plus:noweb-latest
-          docker push gabootay/waha-plus:noweb-latest
+          docker tag devlikeapro/waha-plus:noweb gabootay/waha-plus:noweb
+          docker push gabootay/waha-plus:noweb
