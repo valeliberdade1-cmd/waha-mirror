@@ -1,0 +1,22 @@
+name: Mirror WAHA Plus
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login WAHA source
+        run: docker login -u devlikeapro -p ${{ secrets.WAHA_TOKEN }}
+
+      - name: Pull WAHA Plus
+        run: docker pull devlikeapro/waha-plus:latest
+
+      - name: Login Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Tag and Push
+        run: |
+          docker tag devlikeapro/waha-plus:latest gabootay/waha-plus:latest
+          docker push gabootay/waha-plus:latest
